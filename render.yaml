@@ -2,8 +2,9 @@ services:
   - type: web
     name: inventory-house-backend
     env: elixir
-    buildCommand: cd backend && mix deps.get && MIX_ENV=prod mix compile
-    startCommand: cd backend && MIX_ENV=prod mix phx.server
+    rootDir: backend
+    buildCommand: mix deps.get && mix compile
+    startCommand: mix phx.server
     envVars:
       - key: MIX_ENV
         value: prod

@@ -5,8 +5,6 @@ database_url = System.get_env("DATABASE_URL")
 
 if database_url do
   # Parse PostgreSQL URL: postgresql://user:password@host:port/database
-  uri = URI.parse(database_url)
-  
   config :inventory_house, InventoryHouse.Repo,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
