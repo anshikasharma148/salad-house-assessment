@@ -14,5 +14,8 @@ defmodule InventoryHouseWeb.Router do
 
     resources "/inventory_movements", InventoryMovementController, only: [:create]
   end
+
+  # Health check endpoint (no auth needed, can be pinged to keep service awake)
+  get "/health", InventoryHouseWeb.HealthController, :check
 end
 
