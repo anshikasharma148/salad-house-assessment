@@ -5,7 +5,7 @@ services:
     dockerfilePath: ""
     rootDir: backend
     buildCommand: mix deps.get && mix compile
-    startCommand: mix phx.server
+    startCommand: chmod +x scripts/start.sh && ./scripts/start.sh
     envVars:
       - key: MIX_ENV
         value: prod
