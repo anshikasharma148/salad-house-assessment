@@ -2,6 +2,7 @@ services:
   - type: web
     name: inventory-house-backend
     env: elixir
+    dockerfilePath: ""
     rootDir: backend
     buildCommand: mix deps.get && mix compile
     startCommand: mix phx.server
