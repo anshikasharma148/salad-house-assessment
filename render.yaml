@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: inventory-house-backend
+    env: elixir
+    buildCommand: cd backend && mix deps.get && mix compile
+    startCommand: cd backend && mix phx.server
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: PORT
+        value: 4000
+
+  - type: web
+    name: inventory-house-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: inventory-house-backend
+          property: host
+
+databases:
+  - name: inventory-house-db
+    plan: free
+    databaseName: inventory_house
+    user: inventory_house
+
